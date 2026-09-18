@@ -13,6 +13,7 @@ Welcome to the central **Wols CA Standards** repository. This public repository 
 | **[`HomeAssistant_Testbed_Standards.md`](documentation/HomeAssistant_Testbed_Standards.md)** | Mandatory Home Assistant real-world testing policy (providing authentic utility such as `Wols_CA_HA_Eufy`), event-driven architecture with **zero OS timers**, and dedicated multi-threading. |
 | **[`Hardware_Compilers_Matrix.md`](documentation/Hardware_Compilers_Matrix.md)** | Target compiler and optimization matrix: Intel oneAPI (`icx` / `icpx`) & MSVC for Intel/AMD x86_64; native GCC & Clang for ARM / Alpine Linux; ARM GNU Toolchain for microcontrollers. |
 | **[`Architecture_ZeroTrust.md`](documentation/Architecture_ZeroTrust.md)** | 5-Tier Uploader Model, fail-fast non-retained MQTT handshakes, Admin in-memory queue governance, and Cloud Secure Cell tri-block isolation. |
+| **[`EU_Compliance_Security_Privacy.md`](documentation/EU_Compliance_Security_Privacy.md)** | Full compliance with European IT Security & Privacy Directives (GDPR/AVG, NIS2, Cyber Resilience Act, eIDAS 2.0 / IAM NG) and a transparent culture open to constructive feedback and peer review. |
 | **[`UI_I18n_Standards.md`](documentation/UI_I18n_Standards.md)** | Multilingual UI internationalization standards using external JSON localization dictionaries with dynamic screen refresh. |
 
 ---
