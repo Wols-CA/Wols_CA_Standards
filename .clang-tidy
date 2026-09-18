@@ -1,0 +1,23 @@
+---
+Checks: >
+  -*,
+  bugprone-*,
+  cert-*,
+  clang-analyzer-*,
+  cppcoreguidelines-init-variables,
+  cppcoreguidelines-avoid-goto,
+  misc-*,
+  performance-*,
+  readability-braces-around-statements,
+  readability-identifier-naming,
+  readability-misleading-indentation,
+  readability-redundant-control-flow,
+  readability-uppercase-literal-suffix
+
+WarningsAsErrors: ''
+HeaderFilterRegex: '.*'
+FormatStyle: file
+CheckOptions:
+  readability-identifier-naming.VariableMinLength: 2
+  readability-identifier-naming.ParameterMinLength: 2
+  readability-identifier-naming.FunctionMinLength: 3

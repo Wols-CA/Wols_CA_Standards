@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "schema_version": "1.0.0",
+    "language_bcp47": "en-US",
+    "language_name": "English (United States)",
+    "description": "Standard UI Localization Template for Wols CA applications"
+  },
+  "ui": {
+    "common": {
+      "app_name": "Wols CA Secure Station",
+      "button_ok": "OK",
+      "button_cancel": "Cancel",
+      "button_apply": "Apply",
+      "button_refresh": "Refresh",
+      "status_ready": "Ready",
+      "status_busy": "Processing...",
+      "status_error": "An error occurred"
+    },
+    "authentication": {
+      "title": "Zero-Trust Device Authentication",
+      "prompt_windows_hello": "Please verify your identity using Windows Hello / FIDO2",
+      "button_sign_in": "Sign In",
+      "status_verifying_workpermit": "Verifying FIDO2 WorkPermit validity...",
+      "status_authenticated": "Authentication Successful"
+    },
+    "network": {
+      "label_target_broker": "Target MQTT Broker",
+      "label_classification": "Data Classification Level",
+      "tooltip_transport_shield": "wolfSSL TLS 1.3 Transport Shield Active"
+    }
+  }
+}

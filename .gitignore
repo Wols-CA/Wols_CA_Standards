@@ -1,0 +1,20 @@
+# Build directories
+build/
+cmake-build-*/
+bin/
+lib/
+out/
+
+# IDE files
+.idea/
+.vs/
+*.user
+*.suo
+
+# Operating System files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
