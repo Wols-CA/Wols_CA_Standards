@@ -49,6 +49,8 @@ To guarantee beginner-readable, highly maintainable, and defect-free code, all C
 * **CMake Generator**: Ninja / Visual Studio
 * **C++ Compiler**: Intel oneAPI `icx` / `icpx` or MSVC `cl.exe`
 * **CMake Options**: `-DWOLS_TARGET_PLATFORM=DESKTOP_WIN_X64 -DWOLS_BUILD_PROFILE=DEV`
+* **Debug profile requirement (Visual Studio -> CLion migration)**: the default CLion `Debug` profile adds `/RTC1`. Projects must therefore never apply `/O2` / `-O3` unconditionally; use `$<$<NOT:$<CONFIG:Debug>>:...>` (see `Hardware_Compilers_Matrix.md` section 3). Otherwise the CLion debugger cannot build the target (`error D8016`).
+* **Runtime dependencies for the debugger**: when linking OpenSSL/wolfSSL as shared libraries, add their `bin` folder (e.g. `C:\Program Files\OpenSSL-Win64\bin`) and the project's own DLL output folder to the run configuration `PATH` environment, otherwise the debuggee fails to start.
 
 ### Profile 2: Alpine Linux / Home Assistant Container (GCC / Clang)
 * **C++ Compiler**: `gcc` / `g++` 13+ or `clang++` 17+

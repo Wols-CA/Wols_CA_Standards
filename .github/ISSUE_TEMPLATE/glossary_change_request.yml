@@ -1,0 +1,85 @@
+name: Glossary change request
+description: Propose a new term or a different wording for documentation/Glossary.md. Wols CA reviews and decides; the docs-site is rebuilt after the merge.
+title: "[Glossary] <term>: <short summary of the change>"
+labels: ["glossary-change-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping to keep the Wols CA vocabulary precise. Please write in English and **do not include personal data**.
+        The Glossary follows the standards: a request that changes the *meaning* of a standard is redirected to that standard first.
+        Process: Documentalist drafts a Pull Request -> Architect and Subject Matter Expert review -> merge -> docs-site rebuild.
+
+  - type: input
+    id: term
+    attributes:
+      label: Term
+      description: The Glossary term (existing or new), exactly as it should appear.
+      placeholder: Phantom Broker
+    validations:
+      required: true
+
+  - type: dropdown
+    id: change_type
+    attributes:
+      label: Type of change
+      options:
+        - Reword an existing definition
+        - Add a new term
+        - Add or correct a synonym / Dutch equivalent
+        - Deprecate a term (with successor)
+        - Correct the defining-document reference
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_wording
+    attributes:
+      label: Current wording
+      description: Copy the current Definition (and synonyms) from documentation/Glossary.md. Write "new term" for additions.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_wording
+    attributes:
+      label: Proposed wording
+      description: Your proposed Definition (one to three sentences), plus synonyms / Dutch equivalent if applicable.
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why the change is needed (ambiguity, contradiction with a standard, customer misunderstanding, legal wording, ...). Cite the document and section if you can.
+    validations:
+      required: true
+
+  - type: input
+    id: defining_document
+    attributes:
+      label: Defining document (optional)
+      description: The Wols CA document and section that defines the term, if known.
+      placeholder: documentation/Wols_CA_Core_Architecture.md section 9 III
+
+  - type: dropdown
+    id: requester_type
+    attributes:
+      label: Requester type
+      options:
+        - customer
+        - partner
+        - internal (Wols CA or factory agent)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: This request contains no personal data, secrets or confidential customer information.
+          required: true
+        - label: I understand that Wols CA decides on the wording and that the Glossary follows the standards documents.
+          required: true

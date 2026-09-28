@@ -1,5 +1,7 @@
 # Wols CA Zero-Trust Architecture & System Topology
 
+> **Normative reference**: every design decision in this document must also satisfy the ten general architecture principles (consequent, orthogonality, singularity, thrift, completeness, balance, transparent, generality, openness, scalability) defined in `Architecture_General_IT_Principles.md`.
+
 ## 1. Zero-Trust Security Foundation
 The Wols CA ecosystem operates on a strict **Zero-Trust Network Architecture**:
 - **Never Trust, Always Verify**: Every participant, connection, and telemetry stream must authenticate explicitly.

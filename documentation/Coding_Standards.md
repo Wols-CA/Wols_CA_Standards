@@ -11,9 +11,20 @@ Code in the Wols CA ecosystem must be readable, maintainable, and understandable
 - **No Single-Letter Variables**:
   - Strictly **NO single-letter variable names** (such as `i`, `j`, `k`, `n`, `x`, `p`).
   - Always use descriptive, meaningful names (e.g., `packetIndex`, `retryCount`, `bufferOffset`, `clientIndex`).
-- **Explicit Initialization**:
-  - Every variable (local variables, class members, pointers, loop indices) must be explicitly initialized upon declaration.
-  - In `for` and `while` loops, explicitly initialize the counter (e.g., `for (std::size_t elementIndex = 0; elementIndex < totalCount; ++elementIndex)`).
+- **Explicit Initialization (Zero Indeterminate State)**:
+  - Every variable (local variables, class members, pointers, loop indices) must be explicitly initialized upon declaration. A bare declaration such as `bool isReady;` or `uint32_t count;` is forbidden.
+  - **Struct and class members** must carry a default member initializer in the header: `bool isActive = false;`, `uint16_t port = 0U;`, `Policy policy = Policy::DENY;`, `Foo* next = nullptr;`. For security-relevant enums choose the deny-by-default / most restrictive value. Plain data carriers remain `struct` with public members; classes that own behaviour keep their invariants private and hand out such structs by value.
+  - **Loops**: declare and initialize the loop counter and every helper variable used inside the loop body on their own line immediately *before* the loop; the `for` header only re-assigns:
+    ```cpp
+    std::size_t elementIndex = 0U;
+    for (elementIndex = 0U; elementIndex < totalCount; ++elementIndex)
+    {
+        ...
+    }
+    ```
+    Range-based loops (`for (const auto& item : list)`) are allowed as-is.
+  - Fixed-size C arrays used as output buffers must be zero-initialized (`uint8_t hashBuffer[32] = {0};`).
+  - *Rationale (Wols_CA_M2M_Lib, 2026-09-19)*: an uninitialized `bool` member read as `true` under the MSVC Debug `0xCC` fill pattern and silently changed a security routing decision; Release builds masked the defect. Deterministic defaults make behaviour identical across Debug, Release and compilers.
 
 ---
 

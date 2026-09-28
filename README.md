@@ -8,6 +8,11 @@ Welcome to the central **Wols CA Standards** repository. This public repository 
 
 | Document | Description |
 | :--- | :--- |
+| **[`Wols_CA_Core_Architecture.md`](documentation/Wols_CA_Core_Architecture.md)** | **Wols CA Core Architecture & Ephemeral PKI Philosophy**: Goal Zero & HSSE integration, Hardware DNA, $x.y$ Multi-Root CA Matrix, Phantom Broker, and PLACS unified access. |
+| **[`Wols_CA_Security.md`](documentation/Wols_CA_Security.md)** | **Wols CA Security Architecture**: 5-Level Asset Classification, Effort Matrix, Identity Assurance Pyramid, and Cloud Secure Cell (IAM NG). |
+| **[`Wols_CA_M2M.md`](documentation/Wols_CA_M2M.md)** | **Machine-to-Machine (M2M) Zero-Trust Standard**: 5-Tier Mesh, Dual-Ingress, in-memory RAM streaming, ephemeral sessions, and continuous in-flight authentication. |
+| **[`Person_And_Roles.md`](documentation/Person_And_Roles.md)** | **Identity Governance & Role Delegation**: The Natural Person, bank-backed (iDIN/Itsme) vs. eIDAS identities, contractor statutory employer liability transfer, and FIDO2 WorkPermits. |
+| **[`Endpoint_Operational_Lifecycle.md`](documentation/Endpoint_Operational_Lifecycle.md)** | **14-Step Operational Lifecycle & Profile Model**: Master sequential human-to-workstation execution, WireGuard fixed-IP isolation, wolfSSL Hello ingress, in-memory streaming, and contractor App Attach economics. |
 | **[`IDE_CLion_Standards.md`](documentation/IDE_CLion_Standards.md)** | **JetBrains CLion mandatory standard IDE**, Clang-Tidy code inspection profiles, Clangd language engine, and memory analysis settings. |
 | **[`Coding_Standards.md`](documentation/Coding_Standards.md)** | Core beginner-friendly coding philosophy, meaningful variable naming (strictly NO `i`, `j`, `k`), explicit initialization, explicit memory management, mandatory `break;` in `switch` statements, and English-only policy. |
 | **[`HomeAssistant_Testbed_Standards.md`](documentation/HomeAssistant_Testbed_Standards.md)** | Mandatory Home Assistant real-world testing policy (providing authentic utility such as `Wols_CA_HA_Eufy`), event-driven architecture with **zero OS timers**, and dedicated multi-threading. |
@@ -15,6 +20,8 @@ Welcome to the central **Wols CA Standards** repository. This public repository 
 | **[`Architecture_ZeroTrust.md`](documentation/Architecture_ZeroTrust.md)** | 5-Tier Uploader Model, fail-fast non-retained MQTT handshakes, Admin in-memory queue governance, and Cloud Secure Cell tri-block isolation. |
 | **[`EU_Compliance_Security_Privacy.md`](documentation/EU_Compliance_Security_Privacy.md)** | Full compliance with European IT Security & Privacy Directives (GDPR/AVG, NIS2, Cyber Resilience Act, eIDAS 2.0 / IAM NG) and a transparent culture open to constructive feedback and peer review. |
 | **[`UI_I18n_Standards.md`](documentation/UI_I18n_Standards.md)** | Multilingual UI internationalization standards using external JSON localization dictionaries with dynamic screen refresh. |
+| **[`Glossary.md`](documentation/Glossary.md)** | **Wols CA Glossary (master vocabulary)**: A–Z definitions of every Wols CA term with the defining document, Dutch equivalents and status; published read-only on the docs-site; changes via the `glossary-change-request` Issue template. |
+| **[`Enterprise_README.md`](documentation/Enterprise_README.md)** | **Enterprise overview**: a one-page, non-normative summary for stakeholders, partners and auditors — why Wols CA matters, how the standards are governed, and where to start per audience. |
 
 ---
 

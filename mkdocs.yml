@@ -1,0 +1,86 @@
+# MkDocs Material configuration for the read-only Wols CA docs-site (ADR-009 in
+# Wols_CA_LifeCycleManagementLandscape/Documentation/decision-log.md).
+#
+# Build:   docker run --rm -v "$PWD":/docs squidfunk/mkdocs-material build --strict
+# Publish: the self-hosted runner on nuc-tooling copies ./site to the nginx volume
+#          (Wols_CA_LifeCycleManagementLandscape/.github/workflows/docs-site-build.yml).
+# The site is a build artefact: nobody edits it. Feedback only through "Suggest a change" -> GitHub Issue.
+
+site_name: Wols CA Standards
+site_description: Wols CA architecture, security, identity and engineering standards with the master Glossary.
+site_url: https://docs.wolsca.example/   # TODO: final URL of the docs-site (DMZ reverse proxy, ADR-013)
+repo_url: https://github.com/wolsca/Wols_CA_Standards
+repo_name: wolsca/Wols_CA_Standards
+copyright: Apache License 2.0 - Wols CA
+
+docs_dir: documentation
+site_dir: site
+
+# Personal documents are never published (Zero-Footprint).
+exclude_docs: |
+  CV/
+
+# "Suggest a change": every page's edit icon opens a pre-filled glossary change request instead of an editor.
+edit_uri_template: 'https://github.com/wolsca/Wols_CA_Standards/issues/new?template=glossary_change_request.yml&title=%5BGlossary%5D%20{path!q}'
+
+theme:
+  name: material
+  language: en
+  features:
+    - content.action.edit        # shows the "Suggest a change" icon (edit_uri_template)
+    - content.code.copy
+    - navigation.instant
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - toc.follow
+  icon:
+    edit: material/comment-edit-outline
+  palette:
+    - scheme: default
+      primary: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  - search:
+      lang: en
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Glossary: Glossary.md
+  - Architecture:
+      - Core Architecture & Ephemeral PKI: Wols_CA_Core_Architecture.md
+      - Zero-Trust Architecture & Topology: Architecture_ZeroTrust.md
+      - Security & Cloud Secure Cell: Wols_CA_Security.md
+      - M2M Zero-Trust Communication: Wols_CA_M2M.md
+  - Identity & Endpoint:
+      - Person and Roles: Person_And_Roles.md
+      - Endpoint Operational Lifecycle: Endpoint_Operational_Lifecycle.md
+      - EU Compliance, Security & Privacy: EU_Compliance_Security_Privacy.md
+  - Engineering:
+      - Coding Standards: Coding_Standards.md
+      - IDE CLion Standards: IDE_CLion_Standards.md
+      - Hardware & Compilers Matrix: Hardware_Compilers_Matrix.md
+      - Home Assistant Testbed Standards: HomeAssistant_Testbed_Standards.md
+      - UI Internationalization: UI_I18n_Standards.md

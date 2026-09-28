@@ -19,7 +19,18 @@ The Wols CA ecosystem defines explicit compiler standards optimized per target C
 
 ---
 
-## 3. Platform Tags & Build Profiles
+## 3. Configuration-Aware Optimization Flags (CLion Debug Compatibility)
+* Optimization flags from the matrix above apply to **Release / RelWithDebInfo / MinSizeRel** only.
+* CLion's default `Debug` CMake profile injects `/RTC1` (MSVC runtime checks) and `/Od`. MSVC rejects `/RTC1` combined with `/O2` (`cl : error D8016`), so an unconditional `/O2` or `-O3` in `target_compile_options` makes the project unbuildable and undebuggable from CLion.
+* Always wrap optimization flags in a generator expression, as done in `cmake/WolsCA_CompilerFlags.cmake`:
+  ```cmake
+  target_compile_options(${TARGET} PRIVATE /W4 /permissive- $<$<NOT:$<CONFIG:Debug>>:/O2 /arch:AVX2>)
+  ```
+* Warning flags (`/W4`, `-Wall -Wextra -Wpedantic`) are applied to every configuration.
+
+---
+
+## 4. Platform Tags & Build Profiles
 All CMake builds must specify the target platform and build profile:
 ```bash
 # Target Platforms
