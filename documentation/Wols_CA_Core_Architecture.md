@@ -137,6 +137,8 @@ Administrative credentials must remain strictly bound to identified natural pers
 
 ## 5. Quantum-Ready M2M & Resilient Transaction Management
 
+> **Leading Transaction-lifecycle reference:** the detailed Transaction lifecycle (Preparation / Pool / Execution / CleanUp, unique Transaction ID, Pool Manager, survival timeout, 1..x redundancy per business transaction) built on `Wols_CA_M2M_Lib` is maintained in `Wols_CA_LifeCycleManagementLandscape/Documentation/Transactions/Architecture_Transactions.md` (see also `ADR-074` in that repository's `decision-log.md`). The relationship between that state machine and the redundant-processing-pool race described below is an open Architect decision.
+
 ```
 +---------------------------------------------------------------------------------------------------+
 |                           QUANTUM-READY M2M TRANSACTION LIFECYCLE                                 |
@@ -184,6 +186,8 @@ Administrative credentials must remain strictly bound to identified natural pers
 ---
 
 ## 6. Physical & Logical Access Control (PLACS) & Smart QR Architecture
+
+> **Leading architecture reference:** the detailed, authoritative Access Control architecture (physical and logical) for the whole Wols CA lifecycle — including the `Wols_CA_SecureLaptop` endpoint and the `Wols_CA_M2M_Lib` machine-authentication path — is maintained in `Wols_CA_LifeCycleManagementLandscape/Documentation/Access Control/Architecture_Access_Control.md` (see also `ADR-073` in that repository's `decision-log.md`). This section summarises the pattern; that document is leading for refinements (zero-payload QR, Out-of-Band token delivery, shift-left Impossible Journey, MundusID role-selection safe-connection check, buy-vs-build boundary, open IoT-device-authentication gap).
 
 ### Unified Cryptographic Path for Physical and Logical Access
 Traditional security creates separate, conflicting architectures for physical door access versus logical server/workstation login. Wols CA enforces absolute architectural symmetry: **unlocking a mission-critical server follows the exact same cryptographic workflow as unlocking a physical entrance door**.
