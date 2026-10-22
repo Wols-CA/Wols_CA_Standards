@@ -18,7 +18,7 @@ The end-to-end journey from human identity to secure in-memory execution execute
 |                                                                                                   |
 |  [PHASE A: OUT-OF-BAND PHONE AUTHENTICATION & ROLE AUTHORIZATION]                                 |
 |  1. Personal Authentication: Sovereign eID (Bank-backed iDIN/Itsme vs. European eIDAS 2.0).       |
-|  2. Multi-Organization Role Discovery: Mundus ID directory maps person to available roles.       |
+|  2. Multi-Organization Role Discovery: Mundus ID shows the person their own organizations/roles.  |
 |  3. Two Scenarios: Own Staff (direct) vs. Contractor (Mandatory Employer Liability Transfer).     |
 |  4. Organization Policy Authorization: Hiring party validates geofence, time window, and context.  |
 |  5. Profile Resolution: Resolves OS desktop image, software rights, and hardware limitations.     |
@@ -46,7 +46,7 @@ The end-to-end journey from human identity to secure in-memory execution execute
 * **Bank-Backed eID (iDIN / Itsme)** is mandatory/prioritized for Level 5 (Top Secret) due to continuous financial KYC/AML attestation; **European eIDAS 2.0** accepted for Level 2–4.
 
 ### Step 2: Multi-Organization Directory & Role Association
-* Wols CA Mundus ID directory displays all corporate organizations where the verified individual holds active assignments.
+* Wols CA Mundus ID shows the verified individual (and only the individual) all organizations where they hold active assignments; each organization knows the person solely under its own organisation-scoped Mundus ID obtained through its single MatchQuery (see `Person_And_Roles.md` §2.3–§2.7). No personal attributes and no cross-organisation linkage are ever exposed to an organization.
 * User selects **Organization First**, then **Role Second**.
 
 ### Step 3: Staff vs. Contractor Statutory Employer Liability Transfer
@@ -61,11 +61,13 @@ The end-to-end journey from human identity to secure in-memory execution execute
 
 ### Step 6: FIDO2 Key Population (WorkPermit & M2M Bootstrap Data)
 * User connects registered FIDO2 key to phone (USB-C/NFC).
-* Production Uploader writes encrypted, short-lived WorkPermit containing identity tuple and **M2M bootstrap parameters** (Hello Uploader fixed IP, public key, session nonce).
+* Production Uploader writes encrypted, short-lived WorkPermit containing the organisation-scoped Mundus ID, role tuple and **M2M bootstrap parameters** (Hello Uploader fixed IP, public key, session nonce).
 
 ### Step 7: Custom BIOS + Proxmox Micro-Hypervisor Bootstrapping
 * User inserts FIDO2 key into an arbitrary USB port of the **powered-off machine** and switches on power.
 * Custom open-source firmware (Coreboot / SBL) and Proxmox initialize essential hardware in locked single-tenant mode.
+* Split-Boot design: the SPI flash holds firmware only; the Proxmox host boots from a signed Unified Kernel Image on the SSD into TPM-sealed (PCR 0 + 7), read-only A/B LUKS2 Golden Image slots under a RAM overlay. Specification: `Wols_CA_SecureLaptop/Documentation/Wols_CA_SecureLaptop.md` Part II §2.
+* Replace, never repair: any startup failure beyond the automatic A/B rollback fails closed and leads to replacement of the device; no field repair is attempted.
 
 ### Step 8: WireGuard Fixed-IP Tunneling & Isolated Organizational DNS
 * WireGuard establishes a tunnel to a **fixed IP address** without relying on public DNS.
@@ -90,4 +92,4 @@ The end-to-end journey from human identity to secure in-memory execution execute
 
 ### Step 14: SBYOD Contractor Economics & Shared App Attach Licensing
 * Strictly single-tenant execution (no concurrent images).
-* Shared Read-Only App Attach layer (VHDX / OverlayFS) for enterprise software suites (Adobe, JetBrains, Microsoft 365) eliminates redundant licensing costs, licensed per natural person and paid once.
+* Shared Read-Only App Attach layer (VHDX / OverlayFS) for enterprise software suites (Adobe, JetBrains, Nextcloud Hub) eliminates redundant licensing costs, licensed per natural person and paid once.
