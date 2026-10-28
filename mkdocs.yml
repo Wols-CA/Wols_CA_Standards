@@ -71,6 +71,7 @@ nav:
   - Glossary: Glossary.md
   - Architecture:
       - Core Architecture & Ephemeral PKI: Wols_CA_Core_Architecture.md
+      - Half-Product Delivery Model (Who We Are, How We Work, How We Deliver): Wols_CA_Delivery_Model.md
       - Zero-Trust Architecture & Topology: Architecture_ZeroTrust.md
       - Security & Cloud Secure Cell: Wols_CA_Security.md
       - M2M Zero-Trust Communication: Wols_CA_M2M.md
