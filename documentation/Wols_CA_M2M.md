@@ -96,6 +96,7 @@ Within the `SecureLaptop` ecosystem, Wols CA M2M enforces data classification bo
     * Mandatory FIDO2 hardware token binding.
     * Zero local software footprint (100% RAM streaming).
     * Air-gapped secure cell enforcement (`INTERNET_PROHIBITED` egress policy).
+* **Two independent M2M sessions per Secure Laptop boot** (Owner decisions 2026-11-02; normative detail in `Wols_CA_SecureLaptop.md` Part II §2 and its ADRs): the firmware (UEFI/BIOS) opens no M2M session at all — it only guarantees that nothing but the signed hypervisor image starts. The **Ingress VM** (started first by the Proxmox kiosk host) holds the FIDO2 key and opens **session 1** via the Hello Uploader to the **Production Uploader StartUp** (attestation, image and controller decision, monitoring, central kill-switch). After the Start-Go the **Proxmox kiosk host** opens **session 2** via a Logon Uploader to the **Production Uploader Secure Cell Session (SCS)**, which delivers the classified workload image and `KeyShareB`. The two sessions share no state — control / telemetry plane and classified data plane never commingle — and neither FirstContact nor Hello is involved in session 2.
 
 ---
 
